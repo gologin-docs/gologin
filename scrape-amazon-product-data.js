@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -19,14 +20,14 @@ const makeSingleUpvote = async () => {
   // browser is the Puppeteer Browser instance
   // puppeteer docs: https://pptr.dev/api/puppeteer.browser
   const browser = await connect({
-    browserWSEndpoint: websocketUrl.toString(),
+    browserWSEndpoint:    .toString(),
     ignoreHTTPSErrors: true,
   });
 
   const page = await browser.newPage();
 
   await page.goto('https://myip.link');
-  å
+  
   console.log(await page.content());
 
   // GoLogin allows you to prevent being block by website.
