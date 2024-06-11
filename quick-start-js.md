@@ -1,5 +1,5 @@
 
-# Get Started with NodeJs Browser Automation
+# Quick start guide for browser automation
 
 #  Install Orbita Browser
 
