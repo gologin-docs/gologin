@@ -56,7 +56,7 @@ git clone git@github.com:gologinapp/gologin-template-js.git
 DOCS: https://github.com/gologinapp/gologin-template-js
 
 
-# Install anti-detect browser
+# Step 1: Install anti-detect browser
 
 Web-corporations detect and ban automations.
 To avoid getting banned install Orbita browser by GoLogin. https://useorbita.com/. 
@@ -72,7 +72,7 @@ To avoid getting banned install Orbita browser by GoLogin. https://useorbita.com
 </details>
 
 
-# Get GoLogin API key
+# Step 2: Get GoLogin API key
 
 GoLogin helps your manage multiple browser profiles and enable anti-detect.
 
