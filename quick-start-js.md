@@ -3,6 +3,7 @@
 Let's look at the code which scrapes Amazon product data:
 
 ```javascript
+// file: scrape-amazon-product-data.js
 
 import { GoLogin } from 'gologin'
 import { config } from 'dotenv'
@@ -43,9 +44,11 @@ function scrapeAmazonProductPage(url) {
   await GL.stop();
 }
 
+scrapeAmazonProductPage("")
+
 ```
 
-Code above is single-file sample code. To kick start your own automation better run
+Code above is the very mininal code sample. To start real project better use template:
 
 ```sh
 git clone git@github.com:gologinapp/gologin-template-js.git
@@ -55,24 +58,69 @@ DOCS: https://github.com/gologinapp/gologin-template-js
 # Install anti-detect browser
 
 Web-corporations detect and ban automations.
-To avoid getting banned install Orbita browser by GoLogin. 
+To avoid getting banned install Orbita browser by GoLogin. https://useorbita.com/. 
 
-Install Orbita browser
 
 <details>
-  <summary>Other browsers</summary>
+  <summary>Use cloud or headless browser instead</summary>
  
   # GoLogin cloud Orbita browser
 
   # GoLogin cloud headless browser
 
 </details>
-Other br
 
-## Get GoLogin API key
+# Get GoLogin API key
 
-GoLogin helps your manage multiple browser profiles.
+GoLogin helps your manage multiple browser profiles and enable anti-detect.
+
+<details>
+  <summary>How anti-detect technology works</summary>
+
+  ## How  deanonymization works
+
+  ## How anonymization works
+
+</details>
 
 
+```properties
+// .env file
+GOLOGIN_API_KEY=
+```
 
-## 
+<details>
+<summary>Or, use OS environment variable instead</summary>
+```
+GOLOGIN_API_KEY="12312312" node scrape-amazon-product-data.js
+```
+</details>
+
+
+# Manipulate browser using puppeteer
+
+<details>
+  <summary>Use selenium or other tools istead</summary>
+
+  Orbita is based on stardart web technologies. 
+  You can pick any technology to implement automation.  
+
+  # Selenium
+  # Cypress
+  # BrowserStack
+  # Playwright
+
+</details>
+
+
+# Automation commands
+
+We have implemented automation template which cover most automation need, including:
+- scraping page data
+- upvoting
+- monitoring competitor website
+
+Find more examples: https://github.com/gologin-docs/gologin-template-js/tree/main/examples  
+
+# Glossary
+
