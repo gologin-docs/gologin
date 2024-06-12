@@ -155,7 +155,7 @@ Use puppeteer to automate actions:
 </details>
 
 
-Run automation commands
+Step 4: Run automation commands
 ====
 
 We have implemented automation template which cover most automation need, including:
