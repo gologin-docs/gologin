@@ -77,11 +77,27 @@ To avoid getting banned install Orbita browser by GoLogin. https://useorbita.com
 GoLogin helps your manage multiple browser profiles and enable anti-detect.
 
 <details>
-  <summary>How anti-detect technology works</summary>
+<summary>How anti-detect technology works</summary>
 
-  ## How  deanonymization works
+## Web corporations track users
+Web corporations identify and track user path in internet using: 
 
-  ## How anonymization works
+Browser tracking is a very dynamic area of technology.
+- CPU info
+- IP-address
+- installed fonts
+- installed browser extensions
+- screen size
+- operating system and browser version
+- network
+- geo location
+- any other data available
+
+Tracking is a fast-pace tech domain.
+
+## How anti-detect works
+
+In every profile GoLogin provides a unique combination of parameters corporations use for tracking.
 
 </details>
 
