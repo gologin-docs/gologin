@@ -99,19 +99,36 @@ GOLOGIN_API_KEY="12312312" node scrape-amazon-product-data.js
 </details>
 
 
-# Manipulate browser using puppeteer
+# Step 3: Perform browser actions
+Use puppeteer to automate actions:
+- open webpate
+- get page data
+- fill input
+- click button
+- any action a user can do on a web page
 
 <details>
-  <summary>Use selenium or other tools istead</summary>
+  <summary>Alternatively, use Selenium or any other tool</summary>
 
-  Orbita is based on stardart web technologies. 
-  You can pick any technology to implement automation.  
+  Orbita browser by GoLogin is based on modern web technologies. 
+  You can pick any technology to implement automation.
+  We created templates using puppeteer.
+  
 
-  # Selenium
-  # Cypress
-  # BrowserStack
-  # Playwright
+  ### Selenium
+  Supports python, java, or many other languages.
+  https://www.selenium.dev/
+  
+  
+  ### Playwright
+  https://playwright.dev/
 
+  ### Cypress
+  https://www.cypress.io/
+  
+  ### BrowserStack
+  https://www.browserstack.com/
+ 
 </details>
 
 
