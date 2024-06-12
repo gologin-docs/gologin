@@ -1,163 +1,177 @@
+Quickstart browser automation
+====
 
-This document provides documentation on how to 
-automate browser using **JavaScript**
+Let's look at the code which scrapes Amazon product data:
 
-For **Python** then check **Python browser automation**[Link] instead.
+```javascript
+// file: scrape-amazon-product-data.js
 
-For other languages see **GoLogin HTTP-based API Docs** [Link]
+import { GoLogin } from 'gologin'
+import { config } from 'dotenv'
+import { connect } as puppeteer from 'puppeteer'
 
-# What is GoLogin automation
+config()
+const gologin = GoLogin(process.env.GOLOGIN_API_KEY)
 
-Everything you do in the browser can be automated using GoLogin Automation Tools. 
+function downloadOrCreateBrowserProfile(profileId) {
+  const profile;
+  if (!profileId) {
+    profile = await gologin.createProfile()
+  } else {
+	 profile = await gologin.downloadProfile(profileId)
+  }
+  return profile
+}
 
-This includes:
-- Setting custom proxy configuration
-- Visiting a number of web pages
-- Getting information on these web pages
-- Performing actions on these web pages
+function scrapeAmazonProductPage(url) {
+  const profile_id = process.env.profile_id; 
 
-Here is a list of popular GoLogin automations:
-- how to create multiple linkedin accounts
-- how to create multiple facebook accounts
-- how to create multiple amazon accounts
-- how to scrape website
+  // Start anti-detect browser
 
-# How GoLogin automation works
+  profile = await downloadOrCreateBrowserProfile(profile_id)
+  const webSocket = await profile.start()
+  
+  // Automate using any tool, e.g. puppeteer
 
-[picture, Your automation code => Browser automation tooling => ]
+  const browser = await puppeteer.connect({
+    browserWSEndpoint: wsUrl.toString(),
+    ignoreHTTPSErrors: true,
+  });
 
-To automate anything on Internet you need:
-- browser
-- browser automation tools
-- your code which run specific automation. For examlple, creates accounts.
+  const page = await browser.newPage();
+  await page.goto('https://myip.link/mini');
+  console.log(await page.content());
+  await browser.close();
+  await GL.stop();
+}
 
-## Browser
-
-GoLogin gives you two browser options:
-
-1) GoLogin Orbita browser which runs on your local machine. [Download]
-2) GoLogin Cloud Orbita Browser. [Link]
-3) GoLogin Cloud Lightweight Browser.
-
-GoLogin Orbita browser runs on your local machine. 
-Supported Operating Systems: Windows, Mac, Linux.
-
-GoLogin Cloud Browsers work on machines provided by GoLogin 
-and gives your access to via web interface and automation API.
-
-GoLogin Cloud Lightweight Browser is a headless browser. 
-Which means it does not have the visual interface 
-and still able to run the functional logic of a website.
-It starts and works faster than the full-fledged browser 
-and allows you to run *MOST* automations without any problems.
-
-
-## GoLogin API
-
-You have to use two different APIs to implement browser automation:
-- GoLogin Automation API to anonymize your browser and requests;
-- Browser Automation API to perform action in the browser.
-
-Using GoLogin Automation API you can 
-- start browser with specific browser profile
-- create and manage browser profiles
-- create and configure proxies
-- connect profiles and proxies
-- manage workspace users and permissions
-- ... anything you can do in GoLogin user interface
-
-If you not familiar with this terms, please see [LINK](Basic GoLogin Terms)
-
-Find API_KEY in GoLogin account settings: [Link]
-
-
-## Browser automation API
-In addition to GoLogin API you will have to use browser automation API.
-Browser automation API allows developers to easyly perform any action
-a user would normally do on a website: 
-- open website
-- click a button
-- enter some text to a input box
-- ... anything else
-
-Popular libraries for browser automation are:
-- Puppeteer, a nodejs library
-- Selenium, support java, python and many other languages
-- Playwright, a nodejs library
-
-### Browser Automation npm library [Link]
-
-[https://github.com/gologinapp/gologin](https://github.com/gologinapp/gologin) is a NodeJs GoLogin Automation API.
-
-Write JavaScript code to create, configure and run profiles.
-
-Code example:
-```
+scrapeAmazonProductPage("")
 
 ```
 
+Code above is the very mininal code sample. To start real project better use template:
 
-### Automate using Python
+```sh
+git clone git@github.com:gologinapp/gologin-template-js.git
+```
+DOCS: https://github.com/gologin-docs/gologin-template-js
 
-Please, see **Python browser automation library**[Link] instead.
+For python-based automation see https://github.com/gologinapp/pygologin.
 
-### Automate via HTTP API
 
-Please, see **GoLogin HTTP browser automation API**[Link] instead.
+Step 1: Install anti-detect browser
+====
 
-### More options
+Web-corporations detect and ban automations.
+To avoid getting banned install Orbita browser by GoLogin. https://useorbita.com/. 
 
-Please, contact support if you option you require is not listed. [Link] 
 
-# Basic GoLogin Terms
+<details>
+  <summary>Alternatively, you can use cloud or headless browser</summary>
+ 
+  # GoLogin cloud Orbita browser
 
-## Browser tracking technologies
-Browser tracking allows to establish identify of an internet user and 
-track their path on the Internet.
-Companies and indiduals use tracking technologies for commercial, legal and illegal purposes.
+  # GoLogin cloud headless browser
+
+</details>
+
+
+Step 2: Get GoLogin API key
+====
+
+GoLogin helps your manage multiple browser profiles and enable anti-detect.
+
+<details>
+<summary>How anti-detect technology works</summary>
+
+## Web corporations track users
+Web corporations identify and track user path in internet using: 
+
 Browser tracking is a very dynamic area of technology.
-
-## Browser anti-detect technologies
-If you want to stay anonymous in Internet and perform action 
-which are legal but tracking prevents you to perform
-Browser anti-detect is very dynamic area of technology.
-GoLogin engineering team have successfully created and proactively enhances
- best in the class browser anti-detect engine.
-
-## Browser profile
-GoLogin Browser Profiles are independant Orbita Browser configuration profiles.
-
-GoLogin browser profile contains and gives websites dummy and unique information websites use for tracking
-This info includes:
-- CPU
-- proxy and IP-address
-- installed font faces
-- installed pluging
+- CPU info
+- IP-address
+- installed fonts
+- installed browser extensions
 - screen size
-- operating system
-- browser
-- software versions
-- ... much more tracking data
+- operating system and browser version
+- network
+- geo location
+- any other data available
 
-This way, website are not able to understand:
-1) it is the same person using different GoLogin browser profiles
-2) the user browser is using anti-detect technology
+Tracking is a fast-pace tech domain.
 
-Using GoLogin you can have thousands of browser profiles in a workspace and easily manage them. 
+## How anti-detect works
 
-## Run Profile
-*Run Profile* is short for "Start Orbita web browser with specific pre-configured browser profile".
-It's probaly, the most common action of GoLogin user interface.
+In every profile GoLogin provides a unique combination of parameters corporations use for tracking.
 
-## Workspace
-Workspace contains all the information about 
-- browser profiles, 
-- proxies,
-- user
-- permissions
-- connections between whose entities. 
+</details>
 
-Using GoLogin you can have thousands of browser profiles in a workspace and easily manage them. 
-Every profiles has it's name, tags, directory, proxy link, user permission settigns.
 
-For a complete GoLogin Glossary please see [Link].
+```properties
+// .env file
+GOLOGIN_API_KEY=
+```
+
+<details>
+<summary>Or, use OS environment variable instead</summary>
+```
+GOLOGIN_API_KEY="12312312" node scrape-amazon-product-data.js
+```
+</details>
+
+
+Step 3: Connect puppeteer to browser
+====
+
+Use puppeteer to automate actions:
+- open webpate
+- get page data
+- fill input
+- click button
+- any action a user can do on a web page
+
+<details>
+  <summary>Alternatively, use Selenium or any other tool</summary>
+
+  Orbita browser by GoLogin is based on modern web technologies. 
+  You can pick any technology to implement automation.
+  We created templates using puppeteer.
+  
+
+  ### Selenium
+  Supports python, java, or many other languages.
+  https://www.selenium.dev/
+  
+  
+  ### Playwright
+  https://playwright.dev/
+
+  ### Cypress
+  https://www.cypress.io/
+  
+  ### BrowserStack
+  https://www.browserstack.com/
+ 
+</details>
+
+
+Step 4: Run automation commands
+====
+
+We have implemented automation template which cover most automation need, including:
+- scraping page data
+- upvoting
+- monitoring competitor website
+
+
+Git clone repository and pick example that works best for you: 
+https://github.com/gologin-docs/gologin-template-js/tree/main/examples  
+
+Glossary
+====
+
+## Profile
+
+## 
+
+
