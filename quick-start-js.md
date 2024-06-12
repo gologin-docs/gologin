@@ -1,4 +1,5 @@
-# Quickstart browser automation
+Quickstart browser automation
+====
 
 Let's look at the code which scrapes Amazon product data:
 
@@ -53,10 +54,13 @@ Code above is the very mininal code sample. To start real project better use tem
 ```sh
 git clone git@github.com:gologinapp/gologin-template-js.git
 ```
-DOCS: https://github.com/gologinapp/gologin-template-js
+DOCS: https://github.com/gologin-docs/gologin-template-js
+
+For python-based automation see https://github.com/gologinapp/pygologin.
 
 
-# Step 1: Install anti-detect browser
+Step 1: Install anti-detect browser
+====
 
 Web-corporations detect and ban automations.
 To avoid getting banned install Orbita browser by GoLogin. https://useorbita.com/. 
@@ -72,7 +76,8 @@ To avoid getting banned install Orbita browser by GoLogin. https://useorbita.com
 </details>
 
 
-# Step 2: Get GoLogin API key
+Step 2: Get GoLogin API key
+====
 
 GoLogin helps your manage multiple browser profiles and enable anti-detect.
 
@@ -115,7 +120,9 @@ GOLOGIN_API_KEY="12312312" node scrape-amazon-product-data.js
 </details>
 
 
-# Step 3: Perform browser actions
+Step 3: Connect puppeteer to browser
+====
+
 Use puppeteer to automate actions:
 - open webpate
 - get page data
@@ -148,14 +155,23 @@ Use puppeteer to automate actions:
 </details>
 
 
-# Automation commands
+Run automation commands
+====
 
 We have implemented automation template which cover most automation need, including:
 - scraping page data
 - upvoting
 - monitoring competitor website
 
-Find more examples: https://github.com/gologin-docs/gologin-template-js/tree/main/examples  
 
-# Glossary
+Git clone repository and pick example that works best for you: 
+https://github.com/gologin-docs/gologin-template-js/tree/main/examples  
+
+Glossary
+====
+
+## Profile
+
+## 
+
 
