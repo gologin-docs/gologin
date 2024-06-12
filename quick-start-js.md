@@ -1,60 +1,78 @@
+# Quickstart browser automation
 
-# Quick start guide for browser automation
+Let's look at the code which scrapes Amazon product data:
 
-#  Install Orbita Browser
+```javascript
 
-# <CODE SAMPLE>
+import { GoLogin } from 'gologin'
+import { config } from 'dotenv'
+import { connect } as puppeteer from 'puppeteer'
 
-To run this code:
+config()
+const gologin = GoLogin(process.env.GOLOGIN_API_KEY)
 
-Save this file in Downloads https://raw.githubusercontent.com/gologinapp/gologin/master/examples/scrape-amazon-product-data.js
+function downloadOrCreateBrowserProfile(profileId) {
+  const profile;
+  if (!profileId) {
+    profile = await gologin.createProfile()
+  } else {
+	 profile = await gologin.downloadProfile(profileId)
+  }
+  return profile
+}
 
-```sh
-API_KEY=<GOLOGIN_API_KEY> scriptToRun=scrape-amazon-product-data.js npx gologin-js
-``` 
+function scrapeAmazonProductPage(url) {
+  const profile_id = process.env.profile_id; 
 
-Optionally, you can create browser profile in you GoLogin account and use it to make the request to amazon.
+  // Start anti-detect browser
 
-```sh
-API_KEY=<GOLOGIN_API_KEY> scriptToRun=scrape-amazon-product-data.js profile_id=<gologin_profile_id> npx gologin-js-examples -c "run_script"
-``` 
+  profile = await downloadOrCreateBrowserProfile(profile_id)
+  const webSocket = await profile.start()
+  
+  // Automate using any tool, e.g. puppeteer
 
-# How it works
+  const browser = await puppeteer.connect({
+    browserWSEndpoint: wsUrl.toString(),
+    ignoreHTTPSErrors: true,
+  });
 
-The command above works like this:
-- creates or uses existing gologin browser profile
-- starts orbita browser with that profile
-- connect browser automation tool call puppeteer to that browser
-- sends commands to browser using puppeteer: open page, get page data, click ...
-
-For more details please read [LINK] /architecture.md 
-
-# Create your own automatioon
-
-[LINK] gologin/gologin-js-example 
-as a great starting point to create your automation.
-
-Just `git clone github:gologin/gologin-js-example`
-
-## Create JavaScript Source File
-
-<INLINE!!!!> fixed https://raw.githubusercontent.com/gologinapp/gologin/master/examples/example-amazon-cloud-browser.js
-
-Copy/paste this code and save the file.
-
-For more examples please see https://github.com/gologinapp/gologin/tree/master/examples.
-profile id instead of `EXISTING_PROFILE_ID` in source code.
-
-## Run 
+  const page = await browser.newPage();
+  await page.goto('https://myip.link/mini');
+  console.log(await page.content());
+  await browser.close();
+  await GL.stop();
+}
 
 ```
-node automation.js
+
+Code above is single-file sample code. To kick start your own automation better run
+
+```sh
+git clone git@github.com:gologinapp/gologin-template-js.git
 ```
+DOCS: https://github.com/gologinapp/gologin-template-js
 
-Hooray! 
+# Install anti-detect browser
 
-git clone githubs gologin examples
+Web-corporations detect and ban automations.
+To avoid getting banned install Orbita browser by GoLogin. 
+
+Install Orbita browser
+
+<details>
+  <summary>Other browsers</summary>
+ 
+  # GoLogin cloud Orbita browser
+
+  # GoLogin cloud headless browser
+
+</details>
+Other br
+
+## Get GoLogin API key
+
+GoLogin helps your manage multiple browser profiles.
 
 
 
-
+## 
