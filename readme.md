@@ -81,6 +81,11 @@ Step 2: Get GoLogin API key
 
 GoLogin helps your manage multiple browser profiles and enable anti-detect.
 
+Get your API_TOKEN in Settings > [API](https://app.gologin.com/personalArea/TokenApi) > **New Token**. 
+
+![Get API Token](https://user-images.githubusercontent.com/12957968/146891933-c3b60b4d-c850-47a5-8adf-bc8c37372664.gif)
+
+
 <details>
 <summary>How anti-detect technology works</summary>
 
