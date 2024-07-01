@@ -15,7 +15,8 @@ async function main() {
   await page.goto('https://iphey.com/', { waitUntil: 'networkidle2' })
   delay()
 
-  const score = await page.$eval(".trustworthy-status:not(.hide)", elt => elt?.innerText?.trim())
+  const score = await page.$eval(".trustworthy-status:not(.hide)", 
+    elt => elt?.innerText?.trim())
   await page.screenshot({ path: 'iphey-com.jpg' })
 
   // Expecting 'Trustworthy'
