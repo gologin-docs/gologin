@@ -1,52 +1,29 @@
 Quickstart browser automation
 ====
 
-Let's look at the code which scrapes Amazon product data:
+Let's look at the basic scrapping example:
 
 ```javascript
-// file: scrape-amazon-product-data.js
+import Gologin from './gologin.js';
 
-import { GoLogin } from 'gologin'
-import { config } from 'dotenv'
-import { connect } as puppeteer from 'puppeteer'
+const token = '' // get token https://app.gologin.com/personalArea/TokenApi
+const gologin = new Gologin({ token })
 
-config()
-const gologin = GoLogin(process.env.GOLOGIN_API_KEY)
+async function main() {
+  const browser = await gologin.launch()
+  const page = await browser.newPage()
+  await page.goto('https://iphey.com/', { waitUntil: 'networkidle2' })
+  delay()
 
-function downloadOrCreateBrowserProfile(profileId) {
-  const profile;
-  if (!profileId) {
-    profile = await gologin.createProfile()
-  } else {
-	 profile = await gologin.downloadProfile(profileId)
-  }
-  return profile
+  const score = await page.$eval(".trustworthy-status:not(.hide)", elt => elt?.innerText?.trim())
+  await page.screenshot({ path: 'iphey-com.jpg' })
+
+  // Expecting 'Trustworthy'
+  return score
 }
 
-function scrapeAmazonProductPage(url) {
-  const profile_id = process.env.profile_id; 
-
-  // Start anti-detect browser
-
-  profile = await downloadOrCreateBrowserProfile(profile_id)
-  const webSocket = await profile.start()
-  
-  // Automate using any tool, e.g. puppeteer
-
-  const browser = await puppeteer.connect({
-    browserWSEndpoint: wsUrl.toString(),
-    ignoreHTTPSErrors: true,
-  });
-
-  const page = await browser.newPage();
-  await page.goto('https://myip.link/mini');
-  console.log(await page.content());
-  await browser.close();
-  await GL.stop();
-}
-
-scrapeAmazonProductPage("")
-
+main().catch(console.error).then(console.info).finally(gologin.exit)
+const delay = (ms = 300) => new Promise(res => setTimeout(res, ms));
 ```
 
 Code above is the very mininal code sample. To start real project better use template:
