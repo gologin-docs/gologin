@@ -27,12 +27,11 @@ main().catch(console.error).then(console.info).finally(gologin.exit)
 const delay = (ms = 300) => new Promise(res => setTimeout(res, ms));
 ```
 
-Code above is the very mininal code sample. To start real project better use template:
+Use https://github.com/gologin-docs/gologin-template-js template to start building your automation
 
 ```sh
 git clone git@github.com:gologinapp/gologin-template-js.git
 ```
-DOCS: https://github.com/gologin-docs/gologin-template-js
 
 For python-based automation see https://github.com/gologinapp/pygologin.
 
